@@ -6,7 +6,7 @@ public class Movimiento : MonoBehaviour
 {
     [SerializeField] float velocidad;
     [SerializeField] Vector3 direccion;
-
+    [SerializeField] float timer = 0;
     // Start is called before the first frame update
     void Start()
     {
@@ -18,7 +18,13 @@ public class Movimiento : MonoBehaviour
     { 
         transform.Translate(direccion * velocidad * Time.deltaTime);
 
+        timer += 1 * Time.deltaTime;
 
+        if (timer >= 2)
+        {
+            direccion *= -1;
+            timer = 0;  
+        }
 
     }
 }
