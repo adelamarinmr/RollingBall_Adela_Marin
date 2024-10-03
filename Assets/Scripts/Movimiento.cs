@@ -4,13 +4,14 @@ using UnityEngine;
 
 public class Movimiento : MonoBehaviour
 {
+    Rigidbody rb;
     [SerializeField] float velocidad;
     [SerializeField] Vector3 direccion;
     [SerializeField] float timer = 0;
     // Start is called before the first frame update
     void Start()
     {
-       Rigidbody rb = GetComponent<Rigidbody>();
+       rb = GetComponent<Rigidbody>();
 
 
     }
