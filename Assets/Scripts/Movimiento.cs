@@ -24,8 +24,6 @@ public class Movimiento : MonoBehaviour
 
             GetComponent<Rigidbody>().AddForce(new Vector3(0,10,0),ForceMode.Impulse);
 
-
-
         }
 
         //transform.Translate(direccion * velocidad * Time.deltaTime);
@@ -39,4 +37,11 @@ public class Movimiento : MonoBehaviour
         
 
     }
+
+   
+    
+
+
+
+
 }
