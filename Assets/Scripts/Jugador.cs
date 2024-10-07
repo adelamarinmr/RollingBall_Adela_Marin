@@ -30,7 +30,7 @@ public class Jugador : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
         {
 
-            GetComponent<Rigidbody>().AddForce(new Vector3(0,10,0),ForceMode.Impulse);
+            GetComponent<Rigidbody>().AddForce(new Vector3(0,3,0),ForceMode.Impulse);
 
 
 
