@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Video;
 
 public class Jugador : MonoBehaviour
 {
@@ -31,6 +32,8 @@ public class Jugador : MonoBehaviour
 
             GetComponent<Rigidbody>().AddForce(new Vector3(0,10,0),ForceMode.Impulse);
 
+
+
         }
 
         
@@ -55,7 +58,7 @@ public class Jugador : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag=="Coleccionable")
+        if (other.gameObject.CompareTag("Coleccionable")) ;
         {
             Destroy(other.gameObject);
         }
