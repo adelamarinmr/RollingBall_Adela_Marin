@@ -4,27 +4,63 @@ using UnityEngine;
 
 public class Jugador : MonoBehaviour
 {
-    Vector3 direccion= new Vector3(0f,0f,0f);
+    Rigidbody rb;
+    [SerializeField] float velocidad,h,v;
+    [SerializeField] Vector3 direccion,direccionMove;
+    [SerializeField] float timer = 0;
+    [SerializeField] float fuerzaMove;
+   
 
     // Start is called before the first frame update
     void Start()
     {
-        
+       rb = GetComponent<Rigidbody>();
+
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        float h = Input.GetAxisRaw("Horizontal");
-        float v = Input.GetAxisRaw("Vertical");
-        direccion.z = v;
-        direccion.x = h;
-     transform.Translate(direccion.normalized*Time.deltaTime);
+
+
+        h = Input.GetAxisRaw("Horizontal");
+        v = Input.GetAxisRaw("Vertical");
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+
+            GetComponent<Rigidbody>().AddForce(new Vector3(0,10,0),ForceMode.Impulse);
+
+        }
+
+        
+
+        //transform.Translate(direccion * velocidad * Time.deltaTime);
+
+        //timer += 1 * Time.deltaTime;
+
+        //if (timer >= 2)
+        //{
+        //    direccion *= -1;
+        //    timer = 0;  
+        
+
+    }
+    private void FixedUpdate()
+    {
+        direccionMove = new Vector3(h, 0, v);
+        rb.AddForce((direccionMove).normalized * fuerzaMove, ForceMode.Force);  
 
     }
 
-    
-    
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag=="Coleccionable")
+        {
+            Destroy(other.gameObject);
+        }
+        
+    }
 
 
 
