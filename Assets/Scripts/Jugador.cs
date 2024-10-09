@@ -58,7 +58,7 @@ public class Jugador : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("Coleccionable")) ;
+        if (other.gameObject.CompareTag("Coleccionable")) 
         {
             Destroy(other.gameObject);
         }
