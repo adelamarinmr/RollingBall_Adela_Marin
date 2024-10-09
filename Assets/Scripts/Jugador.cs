@@ -62,7 +62,13 @@ public class Jugador : MonoBehaviour
         {
             Destroy(other.gameObject);
         }
+
         
+
+
+
+
+
     }
 
 
