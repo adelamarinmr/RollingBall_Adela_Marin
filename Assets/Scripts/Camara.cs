@@ -4,15 +4,13 @@ using UnityEngine;
 
 public class Camara : MonoBehaviour
 {
+    [SerializeField] private GameObject cam1;
+    [SerializeField] private GameObject camCenital;
     // Start is called before the first frame update
-    void Start()
+    private void OnTriggerEnter(Collider other)
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        if (other.gameObject.CompareTag("Player"))
+            cam1.SetActive(false);
+            camCenital.SetActive(true);
     }
 }
