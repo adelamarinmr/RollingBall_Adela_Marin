@@ -10,6 +10,8 @@ public class Jugador : MonoBehaviour
     [SerializeField] Vector3 direccion,direccionMove;
     [SerializeField] float timer = 0;
     [SerializeField] float fuerzaMove;
+    [SerializeField] AudioClip magicSound;
+    [SerializeField] Sonido manager;
    
 
     // Start is called before the first frame update
@@ -30,7 +32,7 @@ public class Jugador : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
         {
 
-            GetComponent<Rigidbody>().AddForce(new Vector3(0,3,0),ForceMode.Impulse);
+            GetComponent<Rigidbody>().AddForce(new Vector3(0,2,0),ForceMode.Impulse);
 
 
 
@@ -60,6 +62,7 @@ public class Jugador : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Coleccionable")) 
         {
+            manager.ReproducirSonido(magicSound);
             Destroy(other.gameObject);
         }
 
