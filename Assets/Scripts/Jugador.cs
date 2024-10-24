@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Burst.CompilerServices;
 using UnityEngine;
 using UnityEngine.Video;
 
@@ -12,29 +13,49 @@ public class Jugador : MonoBehaviour
     [SerializeField] float fuerzaMove;
     [SerializeField] AudioClip magicSound;
     [SerializeField] Sonido manager;
-   
+
+    public float potenciaSalto;
+
+    private RaycastHit raycastHit;
+    public float longitudRaycast;
+    public LayerMask raycastLayerMask;
+
+    private int inAir;
 
     // Start is called before the first frame update
     void Start()
     {
        rb = GetComponent<Rigidbody>();
-
-
     }
 
     // Update is called once per frame
     void Update()
     {
-
-
         h = Input.GetAxisRaw("Horizontal");
         v = Input.GetAxisRaw("Vertical");
-        if (Input.GetKeyDown(KeyCode.Space))
+
+        Physics.Raycast(transform.position, Vector3.down, out raycastHit, longitudRaycast, raycastLayerMask);
+
+        if (raycastHit.collider != null)
         {
 
-            GetComponent<Rigidbody>().AddForce(new Vector3(0,2,0),ForceMode.Impulse);
+            if(Input.GetKeyDown(KeyCode.Space))
+            {
+                if(inAir == 2)
+                {
+                    inAir = 0;
+                }
 
-
+                if (inAir == 0) // 0 significa que la bola está en el suelo
+                {
+                    GetComponent<Rigidbody>().AddForce(new Vector3(0, potenciaSalto, 0), ForceMode.Impulse);
+                    inAir = 1; // 1 significa que la bola ha iniciado el salto
+                }
+            }
+            else
+            {
+                inAir = 2; // 2 significa que la bola ha iniciado el salto y además, se ha dejado de detectar el collider
+            }
 
         }
 

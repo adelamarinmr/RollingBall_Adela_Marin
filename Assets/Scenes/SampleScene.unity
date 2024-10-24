@@ -1503,7 +1503,7 @@ Transform:
   m_GameObject: {fileID: 330585543}
   serializedVersion: 2
   m_LocalRotation: {x: 0.13505745, y: -0.000000006449568, z: 8.7911683e-10, w: 0.9908378}
-  m_LocalPosition: {x: 1.455, y: 87, z: 12.55}
+  m_LocalPosition: {x: 1.455, y: 88.799995, z: -8.35}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2091,7 +2091,7 @@ Transform:
   m_GameObject: {fileID: 423482476}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.455, y: 86.8, z: 13.27}
+  m_LocalPosition: {x: 1.455, y: 88.6, z: -7.63}
   m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -2136,7 +2136,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb0170b75c33b9a4b80f8843849e8118, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  velocidad: 0.65
+  velocidad: 0.7
   h: 0
   v: 0
   direccion: {x: 0, y: 0, z: 0}
@@ -2145,6 +2145,11 @@ MonoBehaviour:
   fuerzaMove: 2
   magicSound: {fileID: 8300000, guid: d5a8912f65e8b2a4c9df0b078316bc83, type: 3}
   manager: {fileID: 1969880900}
+  potenciaSalto: 3
+  longitudRaycast: 0.15
+  raycastLayerMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
 --- !u!96 &423482484
 TrailRenderer:
   serializedVersion: 3
@@ -3892,7 +3897,7 @@ Transform:
   m_GameObject: {fileID: 888005006}
   serializedVersion: 2
   m_LocalRotation: {x: 0.13505743, y: -0.0000000064495675, z: 8.7911634e-10, w: 0.9908378}
-  m_LocalPosition: {x: 1.455, y: 87, z: 12.55}
+  m_LocalPosition: {x: 1.455, y: 88.799995, z: -8.35}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
