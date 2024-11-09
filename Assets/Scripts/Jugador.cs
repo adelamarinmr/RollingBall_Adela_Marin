@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using Unity.Burst.CompilerServices;
 using UnityEngine;
 using UnityEngine.Video;
+using UnityEngine.UI;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class Jugador : MonoBehaviour
 {
@@ -14,11 +16,17 @@ public class Jugador : MonoBehaviour
     [SerializeField] float fuerzaMove;
     [SerializeField] AudioClip magicSound;
     [SerializeField] Sonido manager;
-   
+    
+    public Text countText;
+    public Text winText;
 
+    private int count;
 
     public float potenciaSalto;
-    
+
+    public int vidas = 3;  // Nueva variable para almacenar las vidas del jugador
+    public Text livesText;  // Texto para mostrar vidas
+
 
     private RaycastHit raycastHit;
     public float longitudRaycast;
@@ -30,8 +38,9 @@ public class Jugador : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        count = 0;
 
-        
+        SetCountText();
     }
 
     // Update is called once per frame
@@ -97,12 +106,65 @@ public class Jugador : MonoBehaviour
             manager.ReproducirSonido(magicSound);
 
             other.gameObject.SetActive(false);
+            count = count +1;
+            SetCountText();
         }
-       
 
+        else if (other.gameObject.CompareTag("Peligro"))  // Verifica si el objeto es un peligro
+        {
+            vidas -= 1;  // Resta una vida
+            SetLivesText();  // Actualiza el texto de vidas
+
+            if (vidas <= 0)
+            {
+                winText.text = "Game Over";
+                gameObject.SetActive(false);  // Desactiva al jugador
+            }
+        }
+        else if (other.gameObject.CompareTag("PuntoDeLlegada"))  // Punto de llegada para ganar
+        {
+            CheckVictoryConditions();
+        }
     }
+    void SetCountText()
+    {
+        countText.text = "Count: " + count.ToString();
+    }
+
+    void SetLivesText()
+    {
+        livesText.text = "Lives: " + vidas.ToString();
+    }
+
+    void CheckVictoryConditions()
+    {
+        // Verifica si el jugador cumple las condiciones para ganar
+        if (count >= 10 && (vidas >= 1 && vidas <= 3))
+        {
+            winText.text = "YOU WIN!";
+            gameObject.SetActive(false);  // Desactiva al jugador después de ganar
+        }
+        else
+        {
+            winText.text = "GAME OVER";
+        }
+    }
+    void GameOver()
+    {
+        winText.text = "Game Over";
+        Invoke("RestartGame", 2f);  // Llama a RestartGame después de 2 segundos
+    }
+
+    void RestartGame()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);  // Recarga la escena actual
+    }
+}
+
+   
+
 
 
     
-}
+
 
