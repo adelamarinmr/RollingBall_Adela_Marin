@@ -64,7 +64,7 @@ public class Jugador : MonoBehaviour
             }
 
 
-             // pasar a letras
+             
         }
 
 
@@ -96,7 +96,7 @@ public class Jugador : MonoBehaviour
         {
             manager.ReproducirSonido(magicSound);
 
-            Destroy(other.gameObject);
+            other.gameObject.SetActive(false);
         }
        
 
