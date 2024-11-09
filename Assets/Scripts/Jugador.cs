@@ -88,13 +88,14 @@ public class Jugador : MonoBehaviour
         }
 
         
-
-
-
-
-
     }
 
-
+    private void OnCollisionEnter (Collision collision)
+    {
+        if (collision.transform.CompareTag("Collectible"))
+        {
+            Destroy(collision.gameObject);
+        }
+    }
 
 }
