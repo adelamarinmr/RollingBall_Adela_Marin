@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 3866709235201838932}
   - component: {fileID: 4301458739783462379}
   - component: {fileID: 4802535714445023723}
+  - component: {fileID: 1703967589871690374}
   m_Layer: 0
   m_Name: coleccionable
   m_TagString: Coleccionable
@@ -139,6 +140,18 @@ MonoBehaviour:
   velocidad: 0.7
   direccion: {x: 0, y: 0.1, z: 0}
 --- !u!114 &4802535714445023723
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1138227713753324330}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 847d8159c2ab64646a3d87967cd1a171, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1703967589871690374
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

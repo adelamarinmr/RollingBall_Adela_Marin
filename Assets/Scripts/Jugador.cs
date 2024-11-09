@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Unity.Burst.CompilerServices;
 using UnityEngine;
 using UnityEngine.Video;
+using TMPro;
 
 public class Jugador : MonoBehaviour
 {
@@ -13,6 +14,8 @@ public class Jugador : MonoBehaviour
     [SerializeField] float fuerzaMove;
     [SerializeField] AudioClip magicSound;
     [SerializeField] Sonido manager;
+   
+
 
     public float potenciaSalto;
     
@@ -27,6 +30,8 @@ public class Jugador : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+
+        
     }
 
     // Update is called once per frame
@@ -58,6 +63,8 @@ public class Jugador : MonoBehaviour
                 inAir = 2; // 2 significa que la bola ha iniciado el salto y además, se ha dejado de detectar el collider
             }
 
+
+             // pasar a letras
         }
 
 
@@ -80,11 +87,15 @@ public class Jugador : MonoBehaviour
 
     }
 
+   
+
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Coleccionable"))
         {
             manager.ReproducirSonido(magicSound);
+
             Destroy(other.gameObject);
         }
        
