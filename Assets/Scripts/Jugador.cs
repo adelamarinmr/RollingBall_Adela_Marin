@@ -7,14 +7,15 @@ using UnityEngine.Video;
 public class Jugador : MonoBehaviour
 {
     Rigidbody rb;
-    [SerializeField] float velocidad,h,v;
-    [SerializeField] Vector3 direccion,direccionMove;
+    [SerializeField] float velocidad, h, v;
+    [SerializeField] Vector3 direccion, direccionMove;
     [SerializeField] float timer = 0;
     [SerializeField] float fuerzaMove;
     [SerializeField] AudioClip magicSound;
     [SerializeField] Sonido manager;
 
     public float potenciaSalto;
+    
 
     private RaycastHit raycastHit;
     public float longitudRaycast;
@@ -25,7 +26,7 @@ public class Jugador : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-       rb = GetComponent<Rigidbody>();
+        rb = GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame
@@ -39,9 +40,9 @@ public class Jugador : MonoBehaviour
         if (raycastHit.collider != null)
         {
 
-            if(Input.GetKeyDown(KeyCode.Space))
+            if (Input.GetKeyDown(KeyCode.Space))
             {
-                if(inAir == 2)
+                if (inAir == 2)
                 {
                     inAir = 0;
                 }
@@ -59,7 +60,7 @@ public class Jugador : MonoBehaviour
 
         }
 
-        
+
 
         //transform.Translate(direccion * velocidad * Time.deltaTime);
 
@@ -69,33 +70,28 @@ public class Jugador : MonoBehaviour
         //{
         //    direccion *= -1;
         //    timer = 0;  
-        
+
 
     }
     private void FixedUpdate()
     {
         direccionMove = new Vector3(h, 0, v);
-        rb.AddForce((direccionMove).normalized * fuerzaMove, ForceMode.Force);  
+        rb.AddForce((direccionMove).normalized * fuerzaMove, ForceMode.Force);
 
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("Coleccionable")) 
+        if (other.gameObject.CompareTag("Coleccionable"))
         {
             manager.ReproducirSonido(magicSound);
             Destroy(other.gameObject);
         }
+       
 
-        
     }
 
-    private void OnCollisionEnter (Collision collision)
-    {
-        if (collision.transform.CompareTag("Collectible"))
-        {
-            Destroy(collision.gameObject);
-        }
-    }
 
+    
 }
+
