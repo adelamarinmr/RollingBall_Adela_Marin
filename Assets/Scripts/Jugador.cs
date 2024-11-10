@@ -60,7 +60,11 @@ public class Jugador : MonoBehaviour
 
         Physics.Raycast(transform.position, Vector3.down, out raycastHit, longitudRaycast, raycastLayerMask);
 
-
+        // Volver al menú al presionar M
+        if (Input.GetKeyDown(KeyCode.M))
+        {
+            LoadMenu();
+        }
 
 
 
@@ -179,6 +183,11 @@ public class Jugador : MonoBehaviour
     {
         gameEnded = false; // Restablece el estado de finalización del juego
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);  // Recarga la escena actual
+    }
+
+    void LoadMenu()
+    {
+        SceneManager.LoadScene("MainMenu");  // Cargar la escena del menú
     }
 }
 
