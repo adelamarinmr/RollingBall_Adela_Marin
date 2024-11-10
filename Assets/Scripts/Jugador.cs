@@ -34,6 +34,8 @@ public class Jugador : MonoBehaviour
 
     private int inAir;
 
+    private bool gameEnded = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -50,6 +52,18 @@ public class Jugador : MonoBehaviour
         v = Input.GetAxisRaw("Vertical");
 
         Physics.Raycast(transform.position, Vector3.down, out raycastHit, longitudRaycast, raycastLayerMask);
+
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            RestartGame();
+        }
+
+        Physics.Raycast(transform.position, Vector3.down, out raycastHit, longitudRaycast, raycastLayerMask);
+
+
+
+
+
 
         if (raycastHit.collider != null)
         {
@@ -139,7 +153,7 @@ public class Jugador : MonoBehaviour
     void CheckVictoryConditions()
     {
         // Verifica si el jugador cumple las condiciones para ganar
-        if (count >= 10 && (vidas >= 1 && vidas <= 3))
+        if (count >= 8 && (vidas >= 1 && vidas <= 3))
         {
             winText.text = "YOU WIN!";
             gameObject.SetActive(false);  // Desactiva al jugador después de ganar
@@ -152,11 +166,18 @@ public class Jugador : MonoBehaviour
     void GameOver()
     {
         winText.text = "Game Over";
-        Invoke("RestartGame", 2f);  // Llama a RestartGame después de 2 segundos
+        gameEnded = true;
+        Invoke("AllowRestart", 2f);  // Espera 2 segundos antes de permitir reiniciar
+    }
+
+    void AllowRestart()
+    {
+        gameEnded = true; // Permite reiniciar después de 2 segundos
     }
 
     void RestartGame()
     {
+        gameEnded = false; // Restablece el estado de finalización del juego
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);  // Recarga la escena actual
     }
 }
